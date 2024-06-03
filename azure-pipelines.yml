@@ -20,11 +20,11 @@ steps:
   displayName: 'Construir imagen Docker'
 
 - script: |
-    docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
-    docker tag myapp:$(Build.BuildId) $(DOCKER_USERNAME)/myapp:$(Build.BuildId)
-    docker push $(DOCKER_USERNAME)/myapp:$(Build.BuildId)
+    docker login -u $(zifpay) -p $(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)
+    docker tag myapp:$(Build.BuildId) $(zifpay)/myapp:$(Build.BuildId)
+    docker push $(zifpay)/myapp:$(Build.BuildId)
   displayName: 'Push imagen Docker'
   env:
-    DOCKER_USERNAME: $(DOCKER_USERNAME)
-    DOCKER_PASSWORD: $(DOCKER_PASSWORD)
+    DOCKER_USERNAME: $(zifpay)
+    DOCKER_PASSWORD: $(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)
 
