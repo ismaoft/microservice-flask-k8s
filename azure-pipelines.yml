@@ -1,0 +1,30 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Instalar dependencias'
+
+- script: |
+    docker build -t myapp:$(Build.BuildId) .
+  displayName: 'Construir imagen Docker'
+
+- script: |
+    docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
+    docker tag myapp:$(Build.BuildId) $(DOCKER_USERNAME)/myapp:$(Build.BuildId)
+    docker push $(DOCKER_USERNAME)/myapp:$(Build.BuildId)
+  displayName: 'Push imagen Docker'
+  env:
+    DOCKER_USERNAME: $(DOCKER_USERNAME)
+    DOCKER_PASSWORD: $(DOCKER_PASSWORD)
+
