@@ -10,7 +10,7 @@ def home():
             <title>Mi Aplicación en Kubernetes</title>
         </head>
         <body>
-            <h1>¡Hola, Mundo!</h1>
+            <h1>Proyecto Redes</h1>
             <p>Bienvenido a mi aplicación desplegada en un clúster de Kubernetes.</p>
             <h2>Sobre la Aplicación</h2>
             <p>Esta es una simple aplicación web construida con Flask.</p>
